@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maternelle Dashboard</title>
+  <link rel="stylesheet" href="maternelle2.css" />
+</head>
+<body>
+
+  <!-- Floating Icons -->
+  <div class="floating-icons">
+    <span class="icon">🍼</span>
+    <span class="icon">👶</span>
+    <span class="icon">🧸</span>
+    <span class="icon">🧦</span>
+    <span class="icon">🍼</span>
+    <span class="icon">👶</span>
+  </div>
+
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h1>Maternelle</h1>
+
+      <div class="dropdown">
+        <button class="dropbtn">Nurture Hub</button>
+        <div class="dropdown-content">
+          <a href="#" onclick="loadContent('Motherhood Tips')">Motherhood Tips</a>
+          <a href="#" onclick="loadContent('Baby Development')">Baby Development</a>
+          <a href="#" onclick="loadContent('Self-care')">Self-care</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">Nourish Notes</button>
+        <div class="dropdown-content">
+          <a href="#" onclick="loadContent('Breastfeeding')">Breastfeeding</a>
+          <a href="#" onclick="loadContent('Weaning Plans')">Weaning Plans</a>
+          <a href="#" onclick="loadContent('Meal Guides')">Meal Guides</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">Shot Spot</button>
+        <div class="dropdown-content">
+          <a href="#" onclick="loadContent('Vaccine Schedule')">Vaccine Schedule</a>
+          <a href="#" onclick="loadContent('Reminders')">Reminders</a>
+          <a href="#" onclick="loadContent('FAQs')">FAQs</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">Tiny Triumphs</button>
+        <div class="dropdown-content">
+          <a href="#" onclick="loadContent('Track Milestones')">Track Milestones</a>
+          <a href="#" onclick="loadContent('Growth Charts')">Growth Charts</a>
+          <a href="#" onclick="loadContent('Celebrate Wins')">Celebrate Wins</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">Chai & Chat</button>
+        <div class="dropdown-content">
+          <a href="#" onclick="loadContent('Health Assistant')">Health Assistant</a>
+          <a href="#" onclick="loadContent('Real Stories')">Real Stories</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">Care Contacts</button>
+        <div class="dropdown-content">
+          <a href="#" onclick="loadContent('Nearby Clinics')">Nearby Clinics</a>
+          <a href="#" onclick="loadContent('Support Hotlines')">Support Hotlines</a>
+          <a href="#" onclick="loadContent('Emergency Help')">Emergency Help</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+      <h2>Select a topic from the sidebar</h2>
+      <p>Helpful info for young mums will appear here.</p>
+    </main>
+  </div>
+
+  <!-- Simple JS to Load Content -->
+
+    <script>
+  function loadContent(title) {
+    const main = document.getElementById("mainContent");
+    const chat = document.getElementById("chatbot");
+
+    main.innerHTML = `
+      <h2>${title}</h2>
+      <p>This is where helpful content about <strong>${title}</strong> will go. You can customize this area with full articles, images, and more.</p>
+    `;
+
+    if (title === "Health Assistant") {
+      chat.classList.remove("hidden"); // Show chatbot
+    } else {
+      chat.classList.add("hidden"); // Hide chatbot on other pages
+    }
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('user-input');
+    const chatBox = document.getElementById('chat-box');
+    const userText = input.value;
+
+    chatBox.innerHTML += `<p><strong>You:</strong> ${userText}</p>`;
+    input.value = '';
+
+    fetch('/ask', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ question: userText })
+    })
+    .then(res => res.json())
+    .then(data => {
+      const botReply = data?.answer || "Sorry, I couldn't respond.";
+      chatBox.innerHTML += `<p><strong>HealthBot:</strong> ${botReply}</p>`;
+      chatBox.scrollTop = chatBox.scrollHeight;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      chatBox.innerHTML += `<p><strong>HealthBot:</strong> Sorry, there was an error connecting to the health assistant.</p>`;
+      chatBox.scrollTop = chatBox.scrollHeight;
+    });
+  }
+
+  function closeChat() {
+    document.getElementById("chatbot").classList.add("hidden");
+  }
+</script>
+
+  
+<!-- Chatbot Container (initially hidden) -->
+<div id="chatbot" class="chatbot-container hidden">
+  <div class="chat-header">👩‍⚕️ Health Assistant <span class="close-btn" onclick="closeChat()">×</span></div>
+  <div id="chat-box"></div>
+  <textarea id="user-input" placeholder="Ask me about symptoms, nutrition, etc..."></textarea>
+  <button onclick="sendMessage()">Send</button>
+</div>
+
+</body>
+</html>

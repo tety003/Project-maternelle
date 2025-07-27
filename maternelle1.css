@@ -1,0 +1,265 @@
+:root {
+    --magenta: #d63384;
+    --magenta-light: #f8d0e0;
+    --magenta-hover: #c22270;
+    --white: #ffffff;
+    --dark: #333333;
+    --light-grey: #fdf6f9;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--light-grey);
+    color: var(--dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    background-color: var(--white);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Pink Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background-color: var(--magenta-light);
+    border-bottom: 1px solid #eee;
+}
+
+.logo h1 {
+    color: var(--magenta);
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.auth-buttons button {
+    padding: 0.6rem 1.4rem;
+    border: none;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.login-btn {
+    background-color: transparent;
+    border: 1px solid var(--magenta);
+    color: var(--magenta);
+}
+
+.signup-btn {
+    background-color: var(--magenta);
+    color: var(--white);
+}
+
+.login-btn:hover {
+    background-color: var(--magenta);
+    color: var(--white);
+}
+
+.signup-btn:hover {
+    background-color: var(--magenta-hover);
+}
+
+/* Pink Background for Intro */
+.intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem 2rem;
+    gap: 2rem;
+    background-color: var(--magenta-light);
+}
+
+.content {
+    flex: 1;
+}
+
+.content h2 {
+    font-size: 2.5rem;
+    color: var(--magenta);
+    margin-bottom: 1rem;
+}
+
+.content p {
+    font-size: 1.1rem;
+    color: var(--dark);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.next-page {
+    padding: 0.8rem 2rem;
+    background-color: var(--magenta);
+    color: var(--white);
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.next-page:hover {
+    background-color: var(--magenta-hover);
+}
+
+.illustration {
+    flex: 1;
+    text-align: center;
+    background-color: var(--magenta-light);
+}
+
+.illustration img {
+    max-width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: none;
+    background-color: var(--magenta-light);
+}
+
+footer {
+    padding: 1.5rem 2rem;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.95rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-links a {
+    color: var(--dark);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--magenta);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-icons a svg {
+    fill: var(--magenta);
+    width: 28px;
+    height: 28px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover svg {
+    fill: var(--magenta-hover);
+    transform: scale(1.1);
+}
+
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        margin: 1rem auto;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    .auth-buttons {
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .auth-buttons button {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .intro {
+        flex-direction: column;
+        padding: 2rem 1rem;
+        text-align: center;
+    }
+
+    .content h2 {
+        font-size: 2rem;
+    }
+
+    .content p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .illustration {
+        margin-top: 1rem;
+    }
+
+    .illustration img {
+        max-width: 90%;
+        height: auto;
+    }
+
+    .footer-links {
+        gap: 1rem;
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .content h2 {
+        font-size: 1.8rem;
+    }
+
+    .content p {
+        font-size: 0.9rem;
+    }
+
+    .next-page {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}

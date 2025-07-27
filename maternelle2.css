@@ -1,0 +1,362 @@
+:root {
+  --magenta: #d63384;
+  --magenta-light: #f8d0e0;
+  --magenta-hover: #c22270;
+  --white: #ffffff;
+  --dark: #333333;
+  --light-grey: #fdf6f9;
+}
+
+/* Reset & Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--light-grey);
+  color: var(--dark);
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+  width: 260px;
+  background-color: var(--white);
+  padding: 2rem 1rem;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 2;
+  overflow-y: auto;
+}
+
+.sidebar h1 {
+  color: var(--magenta);
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.dropdown {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.dropbtn {
+  background-color: var(--magenta);
+  color: var(--white);
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: left;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.dropbtn:hover {
+  background-color: var(--magenta-hover);
+}
+
+.dropdown-content {
+  display: none;
+  flex-direction: column;
+  background-color: var(--magenta-light);
+  margin-top: 0.5rem;
+  border-radius: 8px;
+  padding: 0.5rem 0;
+}
+
+.dropdown-content a {
+  padding: 0.6rem 1rem;
+  color: var(--dark);
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: block;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #f5bad1;
+  color: var(--magenta-hover);
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+/* --- Main Content --- */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background-color: var(--light-grey);
+}
+
+.main-content h2 {
+  color: var(--magenta);
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.main-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* --- Floating Baby Icons --- */
+.floating-icons {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.icon {
+  position: absolute;
+  font-size: 2.5rem;
+  opacity: 0.15;
+  color: var(--magenta);
+  animation: float 10s infinite ease-in-out;
+}
+
+.icon:nth-child(1) { left: 5%; top: 20%; animation-delay: 0s; }
+.icon:nth-child(2) { left: 25%; top: 70%; animation-delay: 2s; }
+.icon:nth-child(3) { left: 45%; top: 30%; animation-delay: 4s; }
+.icon:nth-child(4) { left: 65%; top: 60%; animation-delay: 1.5s; }
+.icon:nth-child(5) { left: 80%; top: 15%; animation-delay: 3s; }
+.icon:nth-child(6) { left: 15%; top: 80%; animation-delay: 5s; }
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+/* --- Chatbot Container --- */
+.chatbot-container {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  width: 800px;
+  height: 475px;
+  background-color: var(--white);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  z-index: 9999;
+  border: 2px solid var(--magenta-light);
+}
+
+.chatbot-container.hidden {
+  display: none;
+}
+
+.chat-header {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--magenta);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--dark);
+}
+
+#chat-box {
+  flex: 1;
+  overflow-y: auto;
+  background-color: var(--light-grey);
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+#chat-box p {
+  margin-bottom: 0.5rem;
+}
+
+textarea#user-input {
+  height: 50px;
+  resize: none;
+  border: 1px solid var(--magenta-light);
+  border-radius: 8px;
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  background-color: var(--white);
+  color: var(--dark);
+  margin-bottom: 0.5rem;
+}
+
+textarea#user-input:focus {
+  border-color: var(--magenta);
+  outline: none;
+}
+
+button {
+  padding: 0.6rem;
+  background-color: var(--magenta);
+  color: var(--white);
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--magenta-hover);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow-y: visible;
+    max-height: none;
+  }
+
+  .sidebar h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .dropdown {
+    margin-bottom: 1rem;
+  }
+
+  .dropbtn {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .dropdown-content {
+    position: static;
+    display: none;
+    margin-top: 0.3rem;
+  }
+
+  .dropdown-content a {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .main-content {
+    padding: 1.5rem 1rem;
+    min-height: 50vh;
+  }
+
+  .main-content h2 {
+    font-size: 1.4rem;
+  }
+
+  .main-content p {
+    font-size: 0.9rem;
+  }
+
+  .chatbot-container {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    width: auto;
+    height: 60vh;
+    max-height: 400px;
+  }
+
+  .floating-icons {
+    display: none;
+  }
+
+  textarea#user-input {
+    height: 40px;
+    font-size: 0.8rem;
+  }
+
+  button {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    padding: 0.8rem;
+  }
+
+  .sidebar h1 {
+    font-size: 1.3rem;
+  }
+
+  .dropbtn {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .dropdown-content a {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .main-content {
+    padding: 1rem 0.8rem;
+  }
+
+  .main-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .chatbot-container {
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    height: 50vh;
+    padding: 0.8rem;
+  }
+
+  .chat-header {
+    font-size: 0.9rem;
+  }
+
+  #chat-box {
+    font-size: 0.8rem;
+  }
+
+  textarea#user-input {
+    height: 35px;
+    font-size: 0.75rem;
+    padding: 0.4rem;
+  }
+}
